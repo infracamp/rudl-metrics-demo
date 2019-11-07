@@ -1,0 +1,12 @@
+# Kickstart container config file - see https://gitub.com/infracamp/kickstart
+# Run ./kickstart.sh to start a development-container for this project
+version: 1
+from: "infracamp/rudl-metrics:testing"
+command:
+  build:
+    - "echo 'I am executed on build time'"
+  init:
+  test:
+  run:
+  dev:
+    - "echo 'I am executed in dev mode'"
