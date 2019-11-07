@@ -1,69 +1,9 @@
 
-dash_auth: false
+# You should use argon2 crypted passwords here:
+admin_users:
+  - user: admin
+    pass: test
 
-
-dashboards:
-  main:
-  - name: Services
-    type: list
-    elements:
-    - name: infracamp
-      template: chart/service.yaml
-      source: /api/data/service.json
-      query: https://infracamp.org
-      select:
-      - time
-      - connect
-      - lookup
-      append: true
-
-
-    - name: google
-      template: chart/service.yaml
-      source: /api/data/service.json
-      query: http://google.de
-      select:
-      - time
-      - connect
-      - lookup
-      append: true
-      interval: 15
-
-
-
-  - name: Cloudfront
-    type: list
-    elements:
-      - name: req/m tot
-        template: chart/default.yaml
-        source: /api/data/stats.json
-        query: SELECT * FROM node_stat ORDER BY time DESC LIMIT 30
-        select:
-          - loadavg
-
-      - name: 500/m tot
-        template: chart/default.yaml
-        source: /api/data/stats.json
-        query: SELECT * FROM node_stat ORDER BY time DESC LIMIT 30
-        select:
-          - fs_use_prct
-          - fs_iuse_prct
-        yAxisMax: 100
-
-      - name: 404/m tot
-        template: chart/default.yaml
-        source: /api/data/stats.json
-        query: SELECT (mem_avail_kb / mem_total_kb) * 100 as mem_usage FROM node_stat ORDER BY time DESC LIMIT 30
-        select:
-          - mem_usage
-        yAxisMax: 100
-
-  - name: Nodes
-    type: html
-    elements:
-    - name: wurst
-      source: /api/data/html/nodes
-
-
-
-
+# You should use argon2 crypted passwords here:
+dash_tokens:
+  - "test"
